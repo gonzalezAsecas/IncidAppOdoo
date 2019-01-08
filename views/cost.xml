@@ -7,20 +7,16 @@ and open the template in the editor.
 
 <odoo>
     <data>
+        <!--The action of the cost model-->
         <record model="ir.actions.act_window"
                 id="cost_list_action">
             <field name="name">Costs</field>
-            <field name="res_model">gastos.coste</field>
+            <field name="res_model">gastos.cost</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="arch" type="xml">
-                <tree strins="Costs list">
-                    <field name="date"/>
-                    <field name="money"/>
-                    <field name="project_id"/>
-                </tree>
-            </field>
         </record>
+        
+        <!--The menu items of the aplication-->
         <menuitem id="main_menu_gastos"
                   name="Gastos"/>
         <menuitem id="menu_gastos"
@@ -36,5 +32,57 @@ and open the template in the editor.
         <menuitem id="menu_townhall"
                   name="Town Halls"
                   parent="menu_gastos"/>
+        
+        <!--The tree view for the cost model-->
+        <record model="ir.ui.view"
+                id="cost_list_view">
+            <field name="name">costs.tree</field>
+            <field name="model">gastos.cost</field>
+            <field name="arch" type="xml">
+                <tree strins="Costs list">
+                    <field name="date"/>
+                    <field name="money"/>
+                    <field name="project_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!--The search view for the cost model-->
+        <record model="ir.ui.view"
+                id="cost_search_view">
+            <field name="name">costs.search</field>
+            <field name="model">gastos.cost</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="money"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+        
+        <!--The form view for the cost model-->
+        <record model="ir.ui.view"
+                id="cost_form_view">
+            <field name="name">costs.form</field>
+            <field name="model">gastos.cost</field>
+            <field name="arch" type="xml">
+                <form string="Cost Form">
+                    <group colspan="2">
+                        <group colspan="1" col="1">
+                            <field name="project_id"/>
+                            <field name="money"/>
+                        </group>
+                        <group colspan="1" col="1">
+                            <field name="date"/>
+                        </group>
+                        <notebook colspan="2">
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </group>
+                </form>
+            </field>
+        </record>
     </data>
 </odoo>

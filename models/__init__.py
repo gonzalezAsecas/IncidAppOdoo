@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import models, cost, project, townhall, users
+from . import models, cost, project, users, townhall

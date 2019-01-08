@@ -9,4 +9,5 @@ class Cost(models.Model):
     date = fields.Datetime(string='Expenditure date')
     money = fields.Float(string='Spent money')
     description = fields.Text(string='Description of the spenditure')
-    project_id = fields.Many2one('gastos.project', on_delete='cascade', string='The project')
+    project_id = fields.Many2one('gastos.project', 
+                            on_delete='cascade', string='The project')
