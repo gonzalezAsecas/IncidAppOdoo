@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<odoo>
+    <data>
+        <record model="ir.actions.act_window"
+                id="cost_list_action">
+            <field name="name">Costs</field>
+            <field name="res_model">gastos.coste</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="arch" type="xml">
+                <tree strins="Costs list">
+                    <field name="date"/>
+                    <field name="money"/>
+                    <field name="project_id"/>
+                </tree>
+            </field>
+        </record>
+        <menuitem id="main_menu_gastos"
+                  name="Gastos"/>
+        <menuitem id="menu_gastos"
+                  name="Gastos"
+                  parent="main_menu_gastos"/>
+        <menuitem id="menu_project"
+                  name="Projects"
+                  parent="menu_gastos"/>
+        <menuitem id="menu_cost"
+                  name="Costs"
+                  parent="menu_gastos"
+                  action="cost_list_action"/>
+        <menuitem id="menu_townhall"
+                  name="Town Halls"
+                  parent="menu_gastos"/>
+    </data>
+</odoo>
