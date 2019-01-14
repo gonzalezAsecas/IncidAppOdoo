@@ -16,7 +16,25 @@ and open the template in the editor.
             <field name="view_mode">tree,form</field>
         </record>
         
-        <!--The menu items of the aplication-->
+        <!--The action of the project model-->
+        <record model="ir.actions.act_window"
+                id="project_list_action">
+            <field name="name">Projects</field>
+            <field name="res_model">gastos.project</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!--The action of the town hall model-->
+        <record model = "ir.actions.act_window" 
+                id = "townhall_list_action">
+            <field name="name">Town Halls</field>
+            <field name="res_model">gastos.townhall</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!--The menus of the aplication-->
         <menuitem id="main_menu_gastos"
                   name="Gastos"/>
         <menuitem id="menu_gastos"
@@ -24,14 +42,16 @@ and open the template in the editor.
                   parent="main_menu_gastos"/>
         <menuitem id="menu_project"
                   name="Projects"
-                  parent="menu_gastos"/>
+                  parent="menu_gastos"
+                  action="project_list_action"/>
         <menuitem id="menu_cost"
                   name="Costs"
                   parent="menu_gastos"
                   action="cost_list_action"/>
         <menuitem id="menu_townhall"
                   name="Town Halls"
-                  parent="menu_gastos"/>
+                  parent="menu_gastos"
+                  action="townhall_list_action"/>
         
         <!--The tree view for the cost model-->
         <record model="ir.ui.view"
@@ -81,6 +101,116 @@ and open the template in the editor.
                             </page>
                         </notebook>
                     </group>
+                </form>
+            </field>
+        </record>
+        
+        <!--The tree view for the project model-->
+        <record model="ir.ui.view"
+                id="project_list_view">
+            <field name="name">projects.tree</field>
+            <field name="model">gastos.project</field>
+            <field name="arch" type="xml">
+                <tree string="Projects list">
+                    <field name="name"/>
+                    <field name="investment_estimated"/>
+                    <field name="id_chief"/>
+                    <field name="start_date"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!--The search view for the project model-->
+        <record model="ir.ui.view"
+                id="project_search_view">
+            <field name="name">projects.search</field>
+            <field name="model">gastos.project</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="id_chief"/>
+                    <field name="status"/>
+                </search>
+            </field>
+        </record>
+        
+        <!--The form view for the project model-->
+        <record model="ir.ui.view"
+                id="project_form_view">
+            <field name="name">projects.form</field>
+            <field name="model">gastos.project</field>
+            <field name="arch" type="xml">
+                <form string="Project Form">
+                    <group colspan="2">
+                        <group colspan="1" col="1">
+                            <field name="name"/>
+                            <field name="id_chief"/>
+                        </group>
+                        <group colspan="1" col="1">
+                            <field name="start_date"/>
+                            <field name="status"/>
+                            <field name="investment_estimated"/>
+                        </group>
+                        <notebook colspan="2">
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <!--The tree view for the town hall model-->
+        <record model="ir.ui.view"
+                id="townhall_list_view">
+            <field name="name">townhall.tree</field>
+            <field name="model">gastos.townhall</field>
+            <field name="arch" type="xml">
+                <tree string="Townhall list">
+                    <field name="locality"/>
+                    <field name="email"/>
+                    <field name="telephone"/>
+                </tree>
+            </field>
+        </record>
+        
+
+        <!--The search view for the town hall model-->
+        <record model="ir.ui.view"
+                id="townhall_search_view">
+            <field name="name">townhall.search</field>
+            <field name="model">gastos.townhall</field>
+            <field name="arch" type="xml">
+                <search>     
+                    <field name="locality"/>
+                </search>
+            </field>
+        </record>
+        
+        <!--The form view for the town hall model-->
+        <record model="ir.ui.view"
+                id="townhall_form_view">
+            <field name="name">townhall.form</field>
+            <field name="model">gastos.townhall</field>
+            <field name="arch" type="xml">
+                <form string="Town Hall Form">
+                    <group colspan="1">
+                        <group colspan="1" col="1">
+                            <field name="locality"/>
+                        </group>
+                         <group colspan="1" col="1">
+                            <field name="email"/>
+                        </group>
+                         <group colspan="1" col="1">
+                            <field name="telephone"/>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Usuarios">
+                                <field name="users_id"/>
+                            </page>
+                    </notebook>
                 </form>
             </field>
         </record>

@@ -14,8 +14,9 @@ class Project(models.Model):
     description = fields.Text(string="Description")
     start_date = fields.Date(string="Start date")
     finish_date = fields.Date(string="Finish date")
+    status = fields.Char(string="Status")
     id_chief = fields.Many2one('res.users', 
-                                string="Project chief", on_delete='set null')
+                                string = "Project chief", on_delete='set null')
     partner = fields.Many2many('res.users', 
                                 string="Partner")
     costs = fields.One2many('gastos.cost', 
