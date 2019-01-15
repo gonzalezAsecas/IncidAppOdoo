@@ -113,7 +113,7 @@ and open the template in the editor.
             <field name="arch" type="xml">
                 <tree string="Projects list">
                     <field name="name"/>
-                    <field name="investment_estimated"/>
+                    <field name="investment_stimated"/>
                     <field name="id_chief"/>
                     <field name="start_date"/>
                 </tree>
@@ -148,12 +148,16 @@ and open the template in the editor.
                         </group>
                         <group colspan="1" col="1">
                             <field name="start_date"/>
+                            <field name="finish_date"/>
                             <field name="status"/>
-                            <field name="investment_estimated"/>
+                            <field name="investment_stimated"/>
                         </group>
                         <notebook colspan="2">
                             <page string="Description">
                                 <field name="description"/>
+                            </page>
+                            <page string="Partners">
+                                <field name="partner" domain = "[('id', '!=', id_chief)]"/>
                             </page>
                         </notebook>
                     </group>
