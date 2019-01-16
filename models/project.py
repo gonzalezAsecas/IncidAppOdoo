@@ -1,7 +1,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 
 class Project(models.Model):
     _name = 'gastos.project'
@@ -19,10 +19,17 @@ class Project(models.Model):
     #onchange handler of the dates of the project and the costs
     @api.onchange('investment_stimated', 'investment_final')
     def _onchange_price(self):
-        if self.investment_stimated | self.investment_final < 0.0:
+        if (self.investment_stimated < 0.0) | (self.investment_final < 0.0):
             return{
                 'warning':{
                     'title': "Incorrect investment value",
                     'message': "The investment may not be negative"
                 },
             }
+            
+    #
+    @api.constrains('start_date', 'costs.date')
+    def _verify_dates(self):
+        for r in self:
+            if r.start_date and r.start_date > r.costs.date:
+                raise exceptions.ValidationError("The cost date can't be previous to the poject start date.")

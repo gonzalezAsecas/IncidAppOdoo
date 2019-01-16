@@ -159,6 +159,9 @@ and open the template in the editor.
                             <page string="Partners">
                                 <field name="partner" domain = "[('id', '!=', id_chief)]"/>
                             </page>
+                            <page string="Costs">
+                                <field name="costs"/>
+                            </page>
                         </notebook>
                     </group>
                 </form>
