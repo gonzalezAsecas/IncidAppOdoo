@@ -6,8 +6,18 @@ from odoo import models, fields, api
 
 class Cost(models.Model):
     _name = 'gastos.cost'
-    date = fields.Datetime(string='Expenditure date')
-    money = fields.Float(string='Spent money')
-    description = fields.Text(string='Description of the spenditure')
-    project_id = fields.Many2one('gastos.project', 
-                            on_delete='cascade', string='The project')
+    date = fields.Datetime(string='Expenditure date', required = True)
+    money = fields.Float(string='Spent money', required = True)
+    description = fields.Text(string='Description of the spenditure', required = True)
+    project_id = fields.Many2one('gastos.project', on_delete='cascade', string='The project', required = True)
+    
+    #onchange handler for see money positive always
+    @api.onchange('money')
+    def _onchange_price(self):
+        if (self.money <= 0.0):
+            return{
+                'warning':{
+                    'title': "Incorrect investment value",
+                    'message': "The investment may not be negative"
+                },
+            }

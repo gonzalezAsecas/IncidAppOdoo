@@ -27,9 +27,3 @@ class Project(models.Model):
                 },
             }
             
-    #
-    @api.constrains('start_date', 'costs.date')
-    def _verify_dates(self):
-        for r in self:
-            if r.start_date and r.start_date > r.costs.date:
-                raise exceptions.ValidationError("The cost date can't be previous to the poject start date.")
