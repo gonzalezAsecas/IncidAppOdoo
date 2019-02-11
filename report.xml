@@ -21,7 +21,7 @@ and open the template in the editor.
                     <t t-foreach="docs" t-as="o">
                         <div class="page">
                             <h2>Reporte del gastos de <span t-field="o.name"/></h2>
-                            <table>
+                            <table class="table table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
@@ -34,7 +34,7 @@ and open the template in the editor.
                                         <tr>
                                             <td>
                                                 <span t-field="t.date"/>
-                                            </td> 
+                                            </td>
                                             <td>
                                                 <span t-field="t.money"/>
                                             </td>
