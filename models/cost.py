@@ -2,7 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 
 class Cost(models.Model):
     _name = 'gastos.cost'
@@ -21,3 +21,10 @@ class Cost(models.Model):
                     'message': "The investment may not be negative"
                 },
             }
+            
+    #oncreate cost date
+    @api.constrains('projects.start_date', 'date')
+    def _verify_dates(self):
+        for r in self:
+            if r.date and r.date < r.project_id.start_date:
+                raise exceptions.ValidationError("The cost date can't be previous to the poject start date.")

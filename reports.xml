@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--begin reports.xml-->
+<odoo>
+<data>
+    <report
+        id="projects_report"
+        model="gastos.project"
+        string="Projects report"
+        name="gastos.report_projects"
+        file="gastos.report_projects"
+        report_type="qweb-pdf"/>
+    
+    <template id="report_projects">
+        <t t-call="report.html_container">
+            <t t-call="report.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <h2>Projecto</h2>
+                        <h2><span t-field="doc.name"/></h2>
+                        <br></br>
+                        <h2>Creador del proyecto</h2>
+                        <h2><span t-field="doc.id_chief"/></h2>
+                        <br></br>
+                        <h2>Inversion estimada</h2>
+                        <h2><span t-field="doc.investment_stimated"/> €</h2>
+                        <br></br>
+                        <h2>Fecha de inicio</h2>
+                        <h2><span t-field="doc.start_date"/></h2>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</data>
+</odoo>
+<!--end reports.xml-->
