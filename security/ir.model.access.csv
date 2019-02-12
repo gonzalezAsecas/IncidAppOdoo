@@ -1,2 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+admin_gastos_project,Admin project,model_gastos_project,project_admins,1,1,1,1
+access_gastos_project,Access project,model_gastos_project,,1,0,0,0
+admin_gastos_cost,Admin cost,model_gastos_cost,project_admins,1,1,1,1
+access_gastos_cost,Access cost,model_gastos_cost,,1,0,0,0
+admin_gastos_townhall,Admin townhall,model_gastos_townhall,project_admins,1,1,1,1
+access_gastos_townhall,Access townhall,model_gastos_townhall,,1,0,0,0
 access_gastos_gastos,gastos.gastos,model_gastos_gastos,,1,0,0,0
