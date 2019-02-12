@@ -35,6 +35,5 @@ class Project(models.Model):
     def _onchange_dates(self):
         for r in self:
             if r.finish_date and r.finish_date < r.start_date:
-                raise exceptions.ValidationError("The finish date can't be previous to start date.")
-    
-    
+
+
